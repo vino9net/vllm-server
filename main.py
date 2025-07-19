@@ -1,11 +1,18 @@
-from vllm import LLM, SamplingParams
 from dotenv import load_dotenv
-import os
+from huggingface_hub import whoami
+from vllm import LLM, SamplingParams
+import sys
 
 load_dotenv()
 
-print(f"TOKEN={os.environ['HF_TOKEN']}")
+try:
+    user_info = whoami()
+    print(f"Authenticated as: {user_info}")
+except Exception as e:
+    print(f"Not authenticated: {e}")
+    sys.exit(-1)
 
+# ungated model for testing
 #llm = LLM(model="facebook/opt-125m")
 
 # Initialize model (should fit comfortably in 23GB)
