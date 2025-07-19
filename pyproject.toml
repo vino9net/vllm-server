@@ -6,6 +6,29 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "huggingface-hub>=0.33.4",
+    "openai>=1.90.0",
     "python-dotenv>=1.1.1",
     "vllm>=0.9.2",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.4",
+]
+
+[tool.ruff]
+line-length = 90
+indent-width = 4
+exclude = [".git", "__pycache__", "venv", ".venv", "notebooks"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",
+    "C",
+    "I",
+    "A",
+] # Enable checks for PEP8, imports, and other standard rules
+ignore = ["E203", "E266"]
+

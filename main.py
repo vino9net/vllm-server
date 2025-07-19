@@ -1,7 +1,8 @@
+import sys
+
 from dotenv import load_dotenv
 from huggingface_hub import whoami
 from vllm import LLM, SamplingParams
-import sys
 
 load_dotenv()
 
@@ -16,12 +17,12 @@ except Exception as e:
 #llm = LLM(model="facebook/opt-125m")
 
 # Initialize model (should fit comfortably in 23GB)
-llm = LLM(model='meta-llama/Llama-3.1-8B-Instruct', 
+llm = LLM(model="meta-llama/Llama-3.1-8B-Instruct",
           gpu_memory_utilization=0.9,
           max_model_len=4096)
 
 # Test inference
-prompts = ['Analyze this SEC filing text: ...']
+prompts = ["Analyze this SEC filing text: ..."]
 sampling_params = SamplingParams(temperature=0.1, max_tokens=256)
 outputs = llm.generate(prompts, sampling_params)
 print(outputs)
